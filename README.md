@@ -63,7 +63,9 @@ FROM egatur_datos_maestros e
 JOIN comunidades_coordenadas c
 ON e.comunidad_autonoma_limpia = c.comunidad_autonoma;
 
-#### ⚠️ **Inconsistencia de Datos Corregida**
+```
+
+⚠️ **Inconsistencia de Datos Corregida**
 
 Durante la limpieza, se identificó que el campo `comunidad_autonoma` contenía valores **“Desconocido”**. Se observó que el orden de los registros seguía un patrón alfabético, lo que permitió **reasignar correctamente cada valor** a su comunidad correspondiente mediante lógica aplicada en SQL.
 
