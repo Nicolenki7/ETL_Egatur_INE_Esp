@@ -1,145 +1,143 @@
-# 🧠 Evaluación del rendimiento regional y propuestas de mejora del sistema de datos del INE  
+# 📊 ETL Egatur INE España
 
-**Autor:** Nicolas  
-**Última actualización:** noviembre 2025  
+**Data Pipeline (ETL) | Encuesta de Gasto Turístico | Python/Pandas | Airflow + Docker + PostgreSQL**
 
----
-
-## 📘 Descripción general  
-
-Este proyecto analiza la evolución del **gasto turístico en España** utilizando los datos abiertos del **Instituto Nacional de Estadística (INE)**, específicamente de la encuesta **Egatur (Encuesta de Gasto Turístico)**.  
-
-El objetivo principal fue **evaluar el rendimiento económico regional**, detectar inconsistencias en los datos oficiales y proponer **mejoras en los procesos de ingeniería y automatización de datos** aplicables al propio sistema del INE.
+[![Python](https://img.shields.io/badge/Python-3776AB?logo=python)](https://www.python.org/)
+[![Pandas](https://img.shields.io/badge/Pandas-150458?logo=pandas)](https://pandas.pydata.org/)
+[![Airflow](https://img.shields.io/badge/Airflow-017CEE?logo=apacheairflow)](https://airflow.apache.org/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker)](https://www.docker.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?logo=postgresql)](https://www.postgresql.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ---
 
-## 🧩 Objetivos del proyecto  
+## 📋 Overview
 
-1.  **Construir un pipeline ETL completo** desde la descarga de archivos CSV del INE hasta la visualización final en Power BI.  
-2.  **Corregir y limpiar datos inconsistentes** en las variables de gasto y procedencia.  
-3.  **Analizar la distribución regional del gasto turístico**, destacando las comunidades con mayor rendimiento económico.  
-4.  **Desarrollar dashboards interactivos** para la toma de decisiones.  
-5.  **Proponer soluciones técnicas y de negocio** que optimicen la recopilación y explotación de datos turísticos.
+Data Pipeline (ETL) para la **Encuesta de Gasto Turístico (EGATUR)** del Instituto Nacional de Estadística (INE) de España. Unifica, limpia y transforma los datos históricos de gasto turístico utilizando Python/Pandas.
+
+Proyecto base para una pipeline completa con **Airflow, Docker y PostgreSQL** para un dashboard en Power BI.
 
 ---
 
-## 🗂️ Estructura del proyecto
+## 💼 Business Impact
 
-ETL_Egatur_INE_Esp/ │ ├── data/ │ ├── egatur_original.csv │ ├── egatur_limpio.csv │ └── comunidades_coordenadas.csv │ ├── sql/ │ ├── crear_vistas.sql │ ├── egatur_gasto_por_comunidad.sql │ └── egatur_con_coordenadas.sql │ ├── notebooks/ │ ├── limpieza_egatur.ipynb │ ├── analisis_exploratorio.ipynb │ └── automatizacion_carga.ipynb │ ├── dashboard/ │ └── powerbi_dashboard.pbix │ └── README.md
+- **Data Unification**: Consolidates historical tourist spending data from multiple sources
+- **Data Quality**: Cleans and validates INE survey data
+- **Analytics Ready**: Transforms raw data for BI dashboard consumption
+- **Automation Foundation**: Base for orchestrated ETL with Airflow
 
 ---
 
-## ⚙️ Proceso ETL
+## 🛠️ Technical Stack
 
-### 1️⃣ **Extracción**
+| Category | Technologies |
+| :--- | :--- |
+| **Language** | Python |
+| **Data Processing** | Pandas, NumPy |
+| **Orchestration** | Apache Airflow (planned) |
+| **Containerization** | Docker |
+| **Database** | PostgreSQL |
+| **BI** | Power BI (planned) |
 
-Los archivos fueron descargados directamente del portal del **INE**, en formato CSV.  
-Se incluyeron variables clave sobre:
-* Comunidad autónoma de destino.  
-* Tipo de turista (nacional o extranjero).  
-* Gasto medio diario y total.  
-* Periodo temporal (año, mes).  
+---
 
-### 2️⃣ **Transformación (Python & SQL)**
-
-El procesamiento inicial se realizó en **Python (pandas, numpy)**:
-* Eliminación de duplicados y valores nulos.  
-* Normalización de nombres de comunidades autónomas.  
-* Conversión de unidades de gasto a millones de euros.  
-
-Posteriormente, se trabajó en **PostgreSQL** para reforzar la integridad de los datos.
-
-#### 🔧 **Ejemplo de Creación de Vista en SQL**
-
-```sql
-CREATE VIEW egatur_con_coordenadas AS
-SELECT
-    e.periodo,
-    e.comunidad_autonoma,
-    e.gasto_total,
-    c.latitud,
-    c.longitud
-FROM egatur_datos_maestros e
-JOIN comunidades_coordenadas c
-ON e.comunidad_autonoma_limpia = c.comunidad_autonoma;
+## 🏗️ Architecture
 
 ```
-
-⚠️ **Inconsistencia de Datos Corregida**
-
-Durante la limpieza, se identificó que el campo `comunidad_autonoma` contenía valores **“Desconocido”**. Se observó que el orden de los registros seguía un patrón alfabético, lo que permitió **reasignar correctamente cada valor** a su comunidad correspondiente mediante lógica aplicada en SQL.
-
-### 3️⃣ **Carga (Power BI)**
-
-El modelo final fue conectado directamente a la base de datos **PostgreSQL**.  
-**Power BI** permitió:
-* Crear un mapa interactivo con coordenadas.
-* Generar gráficos de barras y tendencias temporales.
-* Añadir filtros dinámicos por año y región.
-
----
-
-## 📊 Visualizaciones clave
-
-| Visualización | Descripción | Objetivo |
-| :--- | :--- | :--- |
-| **Mapa de gasto turístico** | Representa el gasto total por comunidad autónoma. | Mostrar la distribución geográfica del impacto económico. |
-| **Tendencia temporal** | Gráfico de líneas del gasto turístico total entre los últimos años. | Analizar la evolución y recuperación post-pandemia. |
-| **Ranking regional** | Tabla y gráfico de barras ordenado del gasto por CCAA. | Identificar el peso económico y las regiones líderes. |
-
----
-
-## 🔍 Insights principales
-
-* El **mercado nacional** representa el mayor gasto turístico total en España, superando al extranjero.
-* Las comunidades con mayor rendimiento económico son **Cataluña, Andalucía, Canarias y la Comunidad Valenciana**.
-* Una porción significativa del gasto aparece como **“procedencia desconocida”**, lo que reduce la precisión estadística y dificulta el análisis territorial.
-* La evolución muestra una **recuperación sostenida del gasto** tras la pandemia, con un crecimiento anual constante.
+┌─────────────────────────────────────────────────────────────┐
+│                  EGATUR ETL PIPELINE                         │
+├─────────────────────────────────────────────────────────────┤
+│                                                              │
+│  SOURCE: INE Spain                                          │
+│  └─→ EGATUR survey data (Excel/CSV files)                   │
+│      - Tourist spending by country, purpose, region         │
+│                                                              │
+│  EXTRACT                                                    │
+│  └─→ Download historical data from INE                      │
+│                                                              │
+│  TRANSFORM (Python/Pandas)                                  │
+│  └─→ Unify formats, clean data, validate                    │
+│      - Null handling, type correction                       │
+│      - Currency normalization (EUR)                         │
+│      - Date standardization                                 │
+│                                                              │
+│  LOAD                                                       │
+│  └─→ PostgreSQL database                                    │
+│      - Structured tables for BI consumption                 │
+│                                                              │
+│  ORCHESTRATION (Airflow - planned)                          │
+│  └─→ Scheduled ETL jobs, monitoring, alerts                 │
+│                                                              │
+└─────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## 💡 Propuestas de mejora al INE
+## 🚀 Key Features
 
-| Área | Propuesta | Beneficio |
-| :--- | :--- | :--- |
-| **Flujo de Datos** | Automatizar procesos ETL internos (e.g., con **n8n** o **Airflow**). | Reducir errores humanos y garantizar la puntualidad de los datos. |
-| **Calidad de Datos** | Implementar validación geográfica automatizada (lat/long). | Minimizar registros “desconocidos” y mejorar la precisión territorial. |
-| **Estandarización** | Definir taxonomías fijas para comunidades y tipos de turista. | Simplificar la limpieza de datos y la interoperabilidad. |
-| **Monitoreo** | Generar **Data Quality Reports** automáticos. | Identificar inconsistencias y duplicados en tiempo real. |
-| **BI** | Fomentar la publicación de **dashboards abiertos** y actualizables. | Mejorar la transparencia y la inteligencia de negocio colaborativa. |
+### Data Unification
+- Multiple historical files consolidated
+- Consistent schema across time periods
 
----
+### Data Cleaning
+- Null value handling
+- Type correction and validation
+- Currency normalization (EUR)
 
-## 🧮 Stack tecnológico
-
-| Categoría | Herramienta | Uso Principal |
-| :--- | :--- | :--- |
-| **Lenguaje** | Python (Pandas, Numpy) | Transformación, Limpieza de datos. |
-| **Base de datos** | PostgreSQL | Almacenamiento, Integridad y Vistas. |
-| **Visualización** | Power BI | Desarrollo de dashboards interactivos. |
-| **Control de versiones** | Git / GitHub | Gestión de código fuente del proyecto. |
-| **Automatización (Propuesta)** | n8n, Airflow | Optimización del pipeline ETL. |
+### Pipeline Architecture
+- Modular ETL design
+- Docker containerization ready
+- Airflow DAG structure (planned)
 
 ---
 
-## 🚀 Impacto y aplicabilidad
+## 🔧 Setup & Installation
 
-El proyecto demuestra cómo un pipeline de ingeniería de datos bien estructurado puede transformar un conjunto de datos desordenado en **información estratégica** para la planificación turística.
+```bash
+# Clone the repository
+git clone https://github.com/Nicolenki7/ETL_Egatur_INE_Esp.git
+cd ETL_Egatur_INE_Esp
 
-La combinación de análisis técnico y visión de negocio permite ofrecer **recomendaciones orientadas al crecimiento del turismo** nacional e internacional y a la optimización del gasto público destinado a promoción turística.
+# Install dependencies
+pip install -r requirements.txt
+
+# Run ETL pipeline
+python src/etl_pipeline.py
+
+# (Optional) Run with Docker
+docker-compose up
+```
 
 ---
 
-## 📁 Repositorio y recursos
+## 🔗 Links
 
-* 🔗 **Repositorio GitHub:** `ETL_Egatur_INE_Esp`
-* 📊 **Dashboard Power BI:** Incluido en la carpeta `/dashboard/powerbi_dashboard.pbix`
-* 🧾 **Informe completo:** “Evaluación del rendimiento regional y propuestas de mejora del sistema de datos del INE”
+| Resource | URL |
+| :--- | :--- |
+| **Repository** | https://github.com/Nicolenki7/ETL_Egatur_INE_Esp |
+| **Data Source** | [INE - EGATUR](https://www.ine.es/dyngs/INEbase/es/categoria.htm?c=Estadistica_P&cid=1254734710106) |
 
 ---
 
-## 🏁 Conclusión
+## 📝 Resumen en Español
 
-El análisis no solo evidencia la **fortaleza del turismo nacional** como motor económico, sino también la necesidad de una gestión más precisa y automatizada de los datos oficiales.
+Pipeline ETL para la Encuesta de Gasto Turístico (EGATUR) del INE. Unifica, limpia y transforma datos históricos de gasto turístico en España usando Python/Pandas. Proyecto base para pipeline completa con Airflow, Docker y PostgreSQL para dashboard en Power BI.
 
-A través del uso de Python, SQL y Power BI, este proyecto ofrece una **hoja de ruta** para fortalecer el ecosistema informativo del turismo en España, combinando técnica, inteligencia de negocio e innovación.
+---
+
+## 📄 License
+
+MIT License
+
+---
+
+## 👤 Author
+
+**Nicolás Zalazar** | Senior Data Engineer
+
+- GitHub: [@Nicolenki7](https://github.com/Nicolenki7)
+- LinkedIn: [nicolas-zalazar-63340923a](https://www.linkedin.com/in/nicolas-zalazar-63340923a)
+
+---
+
+*Last Updated: March 2026*
