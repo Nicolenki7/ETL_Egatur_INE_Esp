@@ -1,143 +1,122 @@
-# 📊 ETL Egatur INE España
+# EGATUR / INE — Tourist Spending ETL & Analytics (Spain)
 
-**Data Pipeline (ETL) | Encuesta de Gasto Turístico | Python/Pandas | Airflow + Docker + PostgreSQL**
+**Public INE tourism-spend survey (EGATUR) → Python ETL → exploratory charts → Power BI**
 
-[![Python](https://img.shields.io/badge/Python-3776AB?logo=python)](https://www.python.org/)
-[![Pandas](https://img.shields.io/badge/Pandas-150458?logo=pandas)](https://pandas.pydata.org/)
-[![Airflow](https://img.shields.io/badge/Airflow-017CEE?logo=apacheairflow)](https://airflow.apache.org/)
-[![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker)](https://www.docker.com/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?logo=postgresql)](https://www.postgresql.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Pandas](https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white)](https://pandas.pydata.org/)
+[![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
-## 📋 Overview
+## Overview
 
-Data Pipeline (ETL) para la **Encuesta de Gasto Turístico (EGATUR)** del Instituto Nacional de Estadística (INE) de España. Unifica, limpia y transforma los datos históricos de gasto turístico utilizando Python/Pandas.
+End-to-end analytics project on Spain’s **EGATUR** (Encuesta de Gasto Turístico) from the **INE**:
 
-Proyecto base para una pipeline completa con **Airflow, Docker y PostgreSQL** para un dashboard en Power BI.
+1. **Extract** public INE CSV tables (spend by country, CCAA, access mode, trip purpose, spend items)
+2. **Transform** with Pandas (European number formats, periods, long/tidy model)
+3. **Analyze** with reproducible charts and written insights
+4. **Present** in Power BI (`Proyecto Egatur INE.pbix`) plus regional evaluation notes
 
----
-
-## 💼 Business Impact
-
-- **Data Unification**: Consolidates historical tourist spending data from multiple sources
-- **Data Quality**: Cleans and validates INE survey data
-- **Analytics Ready**: Transforms raw data for BI dashboard consumption
-- **Automation Foundation**: Base for orchestrated ETL with Airflow
+> Honest scope: this repo is a **portfolio analytics + ETL** project. Airflow / Docker / PostgreSQL orchestration is a natural next step, not claimed as already production-deployed here.
 
 ---
 
-## 🛠️ Technical Stack
+## Key findings (latest series month)
 
-| Category | Technologies |
-| :--- | :--- |
-| **Language** | Python |
-| **Data Processing** | Pandas, NumPy |
-| **Orchestration** | Apache Airflow (planned) |
-| **Containerization** | Docker |
-| **Database** | PostgreSQL |
-| **BI** | Power BI (planned) |
+See [`outputs/insights.md`](outputs/insights.md) for the auto-generated snapshot. Highlights from the latest run:
+
+- Clear **seasonality** in total tourist spending
+- Concentration in a few **source markets** (UK, Germany, …)
+- Destination value skewed to **Illes Balears, Cataluña, Andalucía**
+- **Air** dominates access-mode spend share
+
+### Charts
+
+| | |
+|:--|:--|
+| ![01_total_spending_trend.png](outputs/figures/01_total_spending_trend.png) | ![06_yoy_change.png](outputs/figures/06_yoy_change.png) |
+| ![02_top_countries.png](outputs/figures/02_top_countries.png) | ![03_spending_by_ccaa.png](outputs/figures/03_spending_by_ccaa.png) |
+| ![04_access_mode_share.png](outputs/figures/04_access_mode_share.png) | ![05_trip_purpose.png](outputs/figures/05_trip_purpose.png) |
+
+Power BI dashboard preview:
+
+![Power BI dashboard](Egatur%20INE%20dashboard.png)
 
 ---
 
-## 🏗️ Architecture
+## Repository structure
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                  EGATUR ETL PIPELINE                         │
-├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│  SOURCE: INE Spain                                          │
-│  └─→ EGATUR survey data (Excel/CSV files)                   │
-│      - Tourist spending by country, purpose, region         │
-│                                                              │
-│  EXTRACT                                                    │
-│  └─→ Download historical data from INE                      │
-│                                                              │
-│  TRANSFORM (Python/Pandas)                                  │
-│  └─→ Unify formats, clean data, validate                    │
-│      - Null handling, type correction                       │
-│      - Currency normalization (EUR)                         │
-│      - Date standardization                                 │
-│                                                              │
-│  LOAD                                                       │
-│  └─→ PostgreSQL database                                    │
-│      - Structured tables for BI consumption                 │
-│                                                              │
-│  ORCHESTRATION (Airflow - planned)                          │
-│  └─→ Scheduled ETL jobs, monitoring, alerts                 │
-│                                                              │
-└─────────────────────────────────────────────────────────────┘
+data/raw/                 # INE public CSVs (10828, 10838, 10839, 13938, 23995)
+data/processed/           # tidy long table (egatur_master_long.csv)
+src/egatur_analysis.py    # ETL + chart generation
+outputs/figures/          # PNG charts for portfolio / README
+outputs/insights.md       # auto-written headline insights
+Egatur_Power_BI_project.ipynb
+Proyecto Egatur INE.pbix
+Evaluacion_rendimiento_regional_INE.docx
 ```
 
 ---
 
-## 🚀 Key Features
-
-### Data Unification
-- Multiple historical files consolidated
-- Consistent schema across time periods
-
-### Data Cleaning
-- Null value handling
-- Type correction and validation
-- Currency normalization (EUR)
-
-### Pipeline Architecture
-- Modular ETL design
-- Docker containerization ready
-- Airflow DAG structure (planned)
-
----
-
-## 🔧 Setup & Installation
+## Quickstart
 
 ```bash
-# Clone the repository
 git clone https://github.com/Nicolenki7/ETL_Egatur_INE_Esp.git
 cd ETL_Egatur_INE_Esp
 
-# Install dependencies
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 
-# Run ETL pipeline
-python src/etl_pipeline.py
+# Refresh analysis (expects CSVs under data/raw/)
+python src/egatur_analysis.py
+```
 
-# (Optional) Run with Docker
-docker-compose up
+### Refresh raw INE extracts
+
+```bash
+mkdir -p data/raw && cd data/raw
+for id in 13938 10838 10839 10828 23995; do
+  curl -fsSL -o "${id}.csv" "https://www.ine.es/jaxiT3/files/t/es/csv_bdsc/${id}.csv"
+done
 ```
 
 ---
 
-## 🔗 Links
+## Data sources
 
-| Resource | URL |
+| Table | Content |
 | :--- | :--- |
-| **Repository** | https://github.com/Nicolenki7/ETL_Egatur_INE_Esp |
-| **Data Source** | [INE - EGATUR](https://www.ine.es/dyngs/INEbase/es/categoria.htm?c=Estadistica_P&cid=1254734710106) |
+| 13938 | Spend by expenditure item |
+| 10838 | Spend by country of residence |
+| 10839 | Spend by destination CCAA |
+| 10828 | Spend by access mode |
+| 23995 | Spend by trip purpose |
+
+INE EGATUR portal: [INE — Tourism surveys](https://www.ine.es/dyngs/INEbase/es/categoria.htm?c=Estadistica_P&cid=1254734710106)
 
 ---
 
-## 📝 Resumen en Español
+## Stack
 
-Pipeline ETL para la Encuesta de Gasto Turístico (EGATUR) del INE. Unifica, limpia y transforma datos históricos de gasto turístico en España usando Python/Pandas. Proyecto base para pipeline completa con Airflow, Docker y PostgreSQL para dashboard en Power BI.
-
----
-
-## 📄 License
-
-MIT License
-
----
-
-## 👤 Author
-
-**Nicolás Zalazar** | Senior Data Engineer
-
-- GitHub: [@Nicolenki7](https://github.com/Nicolenki7)
-- LinkedIn: [nicolas-zalazar-63340923a](https://www.linkedin.com/in/nicolas-zalazar-63340923a)
+| Layer | Tools |
+| :--- | :--- |
+| Ingestion / transform | Python, Pandas |
+| EDA / storytelling | Matplotlib, Seaborn |
+| BI | Power BI |
+| Docs | Markdown insights + regional DOCX |
 
 ---
 
-*Last Updated: March 2026*
+## Author
+
+**Nicolas Zalazar** — Data Analyst · Aspiring Data Engineer · Mallorca, Spain  
+GitHub: [@Nicolenki7](https://github.com/Nicolenki7) · LinkedIn: [nicolas-zalazar-63340923a](https://www.linkedin.com/in/nicolas-zalazar-63340923a)
+
+---
+
+## License
+
+MIT (analysis code). INE statistical data remain under INE reuse terms.
