@@ -1,0 +1,6 @@
+# Binarios y datos: sin diff, fuera de las estadisticas de lenguaje
+*.pbix binary
+*.docx binary
+*.pdf binary
+*.png binary
+*.csv linguist-vendored
