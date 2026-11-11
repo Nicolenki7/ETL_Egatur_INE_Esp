@@ -1,0 +1,20 @@
+{
+  "name": "INE/EGATUR - ingesta y validacion de contrato",
+  "nodes": [
+    {"parameters": {"rule": {"interval": [{"field": "hours", "hoursInterval": 6}]}}, "id": "e1", "name": "Cada 6 h", "type": "n8n-nodes-base.scheduleTrigger", "typeVersion": 1.2, "position": [-360, 0]},
+    {"parameters": {"url": "https://www.ine.es/jaxiT3/files/t/es/csv_bdsc/10838.csv", "options": {"timeout": 30000}, "responseFormat": "text"}, "id": "e2", "name": "Descargar CSV INE", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [-140, 0]},
+    {"parameters": {"jsCode": "const raw = String($input.first().json.data ?? '');\nconst lines = raw.split(/\\r?\\n/).filter(Boolean);\nif (lines.length < 2) { throw new Error('CSV vacio: endpoint caido o el contrato cambio'); }\nconst head = lines[0].replace(/^\\uFEFF/, '').split(';');\nconst bad = lines.slice(1).filter(l => l.split(';').length !== head.length).length;\nif (bad > 0) { throw new Error('Filas con columnas inconsistentes: ' + bad); }\nreturn [{ json: { columnas: head.length, filas: lines.length - 1, checkedAt: new Date().toISOString() } }];"}, "id": "e3", "name": "Validar contrato", "type": "n8n-nodes-base.code", "typeVersion": 2, "position": [80, 0]},
+    {"parameters": {"conditions": {"options": {"caseSensitive": true}, "conditions": [{"leftValue": "={{ $json.filas }}", "rightValue": 1000, "operator": {"type": "number", "operation": "lt"}}]}, "options": {}}, "id": "e4", "name": "Pocas filas", "type": "n8n-nodes-base.if", "typeVersion": 2, "position": [300, 0]},
+    {"parameters": {"text": "=EGATUR: solo {{ $json.filas }} filas (esperado >1000). Revisar el endpoint.", "otherOptions": {}}, "id": "e5", "name": "Avisar", "type": "n8n-nodes-base.slack", "typeVersion": 2.2, "position": [520, -110]},
+    {"parameters": {}, "id": "e6", "name": "OK", "type": "n8n-nodes-base.noOp", "typeVersion": 1, "position": [520, 90]}
+  ],
+  "connections": {
+    "Cada 6 h": {"main": [[{"node": "Descargar CSV INE", "type": "main", "index": 0}]]},
+    "Descargar CSV INE": {"main": [[{"node": "Validar contrato", "type": "main", "index": 0}]]},
+    "Validar contrato": {"main": [[{"node": "Pocas filas", "type": "main", "index": 0}]]},
+    "Pocas filas": {"main": [[{"node": "Avisar", "type": "main", "index": 0}], [{"node": "OK", "type": "main", "index": 0}]]}
+  },
+  "settings": {"executionOrder": "v1"},
+  "active": false,
+  "pinData": {}
+}
