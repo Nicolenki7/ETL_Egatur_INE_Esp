@@ -8,6 +8,12 @@
 
 ---
 
+## 📊 Informe interactivo
+
+**[Abrir el informe →](https://nicolenki7.github.io/ETL_Egatur_INE_Esp/report.html)** — cuotas por comunidad, país, vía de acceso y motivo del viaje, con filtros y la tabla detrás de cada gráfico, regenerado desde los CSV de `data/`.
+
+---
+
 ## La pregunta de negocio
 
 España recibe turismo de muchos mercados y no todos dejan el mismo dinero ni llegan por la misma puerta. La pregunta no es *cuánto se gasta* sino **de dónde viene ese gasto, dónde se queda y por dónde entra**, porque cada respuesta apunta a una decisión distinta: a qué mercado promocionar, qué comunidad atender y qué infraestructura priorizar.
@@ -61,6 +67,7 @@ python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
 python src/egatur_drivers.py    # the three SVG charts in this README
+python src/build_report.py      # rebuilds docs/report.html from data/processed/
 ```
 
 Los CSV del INE están versionados en `data/`, así que no se descarga nada.
@@ -73,12 +80,14 @@ Los CSV del INE están versionados en `data/`, así que no se descarga nada.
 Egatur_Power_BI_project.ipynb        notebook: granularity check, shares, trend, findings
 src/egatur_drivers.py                the three charts in this README (SVG)
 src/egatur_analysis.py               extended exploratory charts (PNG)
+src/build_report.py                  builds docs/report.html from the CSV
+src/report.py                        shared report generator (CSS + JS + helpers)
 src/svg_chart.py                     tiny dependency-free SVG bar chart generator
 data/raw/*.csv                       the five INE tables as downloaded
 data/processed/egatur_master_long.csv  unified long format (2,881 rows)
 docs/img/*.svg                       charts used here
 outputs/figures/*.png                extended figures
-docs/report.html                     one-page visual report
+docs/report.html                     one-page visual report (published with GitHub Pages)
 Proyecto Egatur INE.pbix             Power BI dashboard
 ```
 
