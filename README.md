@@ -101,7 +101,7 @@ Proyecto Egatur INE.pbix             Power BI dashboard
 - **`Resto del Mundo` (53 %) es una caja negra**: sin desagregar no se sabe qué mercados crecen dentro.
 - Los datos llegan hasta **2026-07**, el último periodo de la extracción; no hay garantía de que sea el último publicado por el INE.
 
-## 下一步 / Siguiente paso
+## Siguiente paso
 
 Desagregar *Resto del Mundo* y cruzar país con comunidad autónoma para pasar de *dónde se gasta* a *qué campaña mover*. Ese cruce no existe en estas cinco tablas y requeriría otra descarga del INE.
 
