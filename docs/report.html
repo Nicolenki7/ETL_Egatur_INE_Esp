@@ -1,18 +1,146 @@
-<!doctype html>
-<html lang="es"><head><meta charset="utf-8">
+<!doctype html><html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ETL_Egatur_INE_Esp · Informe de datos</title><style>*{box-sizing:border-box}body{margin:0;background:#0b0f14;color:#e6edf3;font:15px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}.wrap{max-width:900px;margin:0 auto;padding:46px 20px 70px}.eyebrow{margin:0 0 10px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#38e07b}h1{margin:0 0 8px;font-size:clamp(26px,5vw,38px);line-height:1.1;letter-spacing:-.02em}.sub{margin:0;color:#8b9bab;font-size:14px}.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:26px 0}.kpi{background:#121820;border:1px solid #1f2a36;border-radius:14px;padding:16px}.kpi .v{font-size:24px;font-weight:700;color:#38e07b;font-variant-numeric:tabular-nums}.kpi .l{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8b9bab;margin-top:4px}.card{background:#121820;border:1px solid #1f2a36;border-radius:16px;padding:22px;margin-bottom:18px}.card h2{margin:0 0 16px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#8b9bab}code{background:#1a2531;padding:1px 6px;border-radius:6px;font-size:12px}.banner{background:#2a1f12;border:1px solid #5a3f1c;border-radius:12px;padding:14px 18px;margin:20px 0;font-size:13px;color:#f0c48a}.banner ul{margin:8px 0 0;padding-left:18px}footer{margin-top:38px;padding-top:18px;border-top:1px solid #1f2a36;font-size:12px;color:#68798a}</style></head>
-<body><main class="wrap">
-<p class="eyebrow">Informe generado desde el dataset del repositorio</p>
-<h1>ETL_Egatur_INE_Esp</h1>
-<p class="sub">Fuente: <code>data/processed/egatur_master_long.csv</code> · separador <code>&#x27;,&#x27;</code> · agregación <code>sum</code></p>
-<div class="kpis">
-<div class="kpi"><div class="v">2,881</div><div class="l">filas</div></div>
-<div class="kpi"><div class="v">9</div><div class="l">columnas</div></div>
-<div class="kpi"><div class="v">100.0%</div><div class="l">celdas con dato</div></div>
-<div class="kpi"><div class="v">2</div><div class="l">columnas numéricas</div></div>
-</div>
-<section class="card"><h2>Distribución de registros por table_name</h2><svg viewBox="0 0 820 146" width="100%"><rect x="250" y="8" width="480.0" height="16" rx="4" fill="#38e07b" opacity=".85"/><text x="240" y="20" text-anchor="end" font-size="12" fill="#a9b8c7">Gasto por CCAA destino</text><text x="738.0" y="20" font-size="12" fill="#e6edf3">1,040</text><rect x="250" y="34" width="420.0" height="16" rx="4" fill="#38e07b" opacity=".85"/><text x="240" y="46" text-anchor="end" font-size="12" fill="#a9b8c7">Gasto por país de residencia</text><text x="678.0" y="46" font-size="12" fill="#e6edf3">910</text><rect x="250" y="60" width="299.5" height="16" rx="4" fill="#38e07b" opacity=".85"/><text x="240" y="72" text-anchor="end" font-size="12" fill="#a9b8c7">Gasto por vía de acceso</text><text x="557.5" y="72" font-size="12" fill="#e6edf3">649</text><rect x="250" y="86" width="70.2" height="16" rx="4" fill="#38e07b" opacity=".85"/><text x="240" y="98" text-anchor="end" font-size="12" fill="#a9b8c7">Gasto por motivo del viaje</text><text x="328.2" y="98" font-size="12" fill="#e6edf3">152</text><rect x="250" y="112" width="60.0" height="16" rx="4" fill="#38e07b" opacity=".85"/><text x="240" y="124" text-anchor="end" font-size="12" fill="#a9b8c7">Partidas de gasto</text><text x="318.0" y="124" font-size="12" fill="#e6edf3">130</text></svg></section><section class="card"><h2>Suma de valor por table_name</h2><svg viewBox="0 0 820 146" width="100%"><rect x="250" y="8" width="480.0" height="16" rx="4" fill="#4cc2ff" opacity=".85"/><text x="240" y="20" text-anchor="end" font-size="12" fill="#a9b8c7">Gasto por motivo del viaje</text><text x="738.0" y="20" font-size="12" fill="#e6edf3">2,501,911</text><rect x="250" y="34" width="365.9" height="16" rx="4" fill="#4cc2ff" opacity=".85"/><text x="240" y="46" text-anchor="end" font-size="12" fill="#a9b8c7">Gasto por CCAA destino</text><text x="623.9" y="46" font-size="12" fill="#e6edf3">1,907,134</text><rect x="250" y="60" width="365.9" height="16" rx="4" fill="#4cc2ff" opacity=".85"/><text x="240" y="72" text-anchor="end" font-size="12" fill="#a9b8c7">Gasto por país de residencia</text><text x="623.9" y="72" font-size="12" fill="#e6edf3">1,907,134</text><rect x="250" y="86" width="365.9" height="16" rx="4" fill="#4cc2ff" opacity=".85"/><text x="240" y="98" text-anchor="end" font-size="12" fill="#a9b8c7">Gasto por vía de acceso</text><text x="623.9" y="98" font-size="12" fill="#e6edf3">1,907,133</text><rect x="250" y="112" width="182.9" height="16" rx="4" fill="#4cc2ff" opacity=".85"/><text x="240" y="124" text-anchor="end" font-size="12" fill="#a9b8c7">Partidas de gasto</text><text x="440.9" y="124" font-size="12" fill="#e6edf3">953,567</text></svg></section><section class="card"><h2>Evolución de suma de valor por mes</h2><svg viewBox="0 0 820 250" width="100%"><line x1="62" y1="212" x2="802" y2="212" stroke="#243040"/><polyline points="62.0,121.1 94.2,145.1 126.3,63.2 158.5,149.7 190.7,40.5 222.9,146.5 255.0,76.4 287.2,141.2 319.4,94.2 351.6,91.6 383.7,212.0 415.9,198.0 448.1,204.1 480.3,126.5 512.4,168.0 544.6,39.7 576.8,136.2 609.0,58.5 641.1,115.8 673.3,74.7 705.5,39.8 737.7,80.1 769.8,18.0 802.0,101.9" fill="none" stroke="#4cc2ff" stroke-width="2.5"/><circle cx="62.0" cy="121.1" r="3" fill="#4cc2ff"/><circle cx="94.2" cy="145.1" r="3" fill="#4cc2ff"/><circle cx="126.3" cy="63.2" r="3" fill="#4cc2ff"/><circle cx="158.5" cy="149.7" r="3" fill="#4cc2ff"/><circle cx="190.7" cy="40.5" r="3" fill="#4cc2ff"/><circle cx="222.9" cy="146.5" r="3" fill="#4cc2ff"/><circle cx="255.0" cy="76.4" r="3" fill="#4cc2ff"/><circle cx="287.2" cy="141.2" r="3" fill="#4cc2ff"/><circle cx="319.4" cy="94.2" r="3" fill="#4cc2ff"/><circle cx="351.6" cy="91.6" r="3" fill="#4cc2ff"/><circle cx="383.7" cy="212.0" r="3" fill="#4cc2ff"/><circle cx="415.9" cy="198.0" r="3" fill="#4cc2ff"/><circle cx="448.1" cy="204.1" r="3" fill="#4cc2ff"/><circle cx="480.3" cy="126.5" r="3" fill="#4cc2ff"/><circle cx="512.4" cy="168.0" r="3" fill="#4cc2ff"/><circle cx="544.6" cy="39.7" r="3" fill="#4cc2ff"/><circle cx="576.8" cy="136.2" r="3" fill="#4cc2ff"/><circle cx="609.0" cy="58.5" r="3" fill="#4cc2ff"/><circle cx="641.1" cy="115.8" r="3" fill="#4cc2ff"/><circle cx="673.3" cy="74.7" r="3" fill="#4cc2ff"/><circle cx="705.5" cy="39.8" r="3" fill="#4cc2ff"/><circle cx="737.7" cy="80.1" r="3" fill="#4cc2ff"/><circle cx="769.8" cy="18.0" r="3" fill="#4cc2ff"/><circle cx="802.0" cy="101.9" r="3" fill="#4cc2ff"/><text x="62.0" y="236" text-anchor="middle" font-size="11" fill="#8b9bab">2015-10</text><text x="158.5" y="236" text-anchor="middle" font-size="11" fill="#8b9bab">2017-02</text><text x="255.0" y="236" text-anchor="middle" font-size="11" fill="#8b9bab">2018-06</text><text x="351.6" y="236" text-anchor="middle" font-size="11" fill="#8b9bab">2019-10</text><text x="448.1" y="236" text-anchor="middle" font-size="11" fill="#8b9bab">2021-03</text><text x="544.6" y="236" text-anchor="middle" font-size="11" fill="#8b9bab">2022-07</text><text x="641.1" y="236" text-anchor="middle" font-size="11" fill="#8b9bab">2023-11</text><text x="737.7" y="236" text-anchor="middle" font-size="11" fill="#8b9bab">2025-03</text><text x="802.0" y="236" text-anchor="middle" font-size="11" fill="#8b9bab">2026-02</text><text x="54" y="28" text-anchor="end" font-size="11" fill="#8b9bab">93,832</text><text x="54" y="212" text-anchor="end" font-size="11" fill="#8b9bab">0</text></svg></section>
-<footer>Cada cifra se calcula del CSV versionado en este repositorio; no hay datos simulados.<br>
-Informe de analisis generado para revision; el dataset fuente es el versionado en el repositorio.</footer>
-</main></body></html>
+<title>Egatur: dónde se queda el gasto turístico</title><style>:root{--t:#1f2328;--g:#57606a;--l:#d0d7de;--a:#0f62fe;--r:#da1e28;--f:#f6f8fa}
+*{box-sizing:border-box}
+body{margin:0;color:var(--t);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.w{max-width:1000px;margin:0 auto;padding:40px 24px 64px}
+header{border-bottom:1px solid var(--l);padding-bottom:24px}
+.eb{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--a);font-weight:700}
+h1{font-size:30px;line-height:1.25;margin:10px 0 12px;letter-spacing:-.02em}
+h2{font-size:19px;margin:0 0 4px}
+.pq{color:var(--g);font-size:16px;max-width:70ch;margin:0}
+.k{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:28px 0 8px}
+.k div{background:var(--f);border:1px solid var(--l);border-radius:10px;padding:14px 16px}
+.k b{display:block;font-size:24px;letter-spacing:-.02em}
+.k span{font-size:12px;color:var(--g);text-transform:uppercase;letter-spacing:.06em}
+.k em{display:block;font-size:12px;color:var(--g);font-style:normal}
+.fl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:28px 0 4px}
+.fl i{font-size:12px;color:var(--g);text-transform:uppercase;letter-spacing:.06em;font-style:normal;margin-right:4px}
+button{font:inherit;font-size:13px;padding:6px 14px;border-radius:999px;border:1px solid var(--l);background:#fff;color:var(--g);cursor:pointer;transition:.15s}
+button:hover{border-color:var(--a);color:var(--a)}
+button[aria-pressed=true]{background:var(--a);border-color:var(--a);color:#fff}
+section{margin:36px 0}
+.s{color:var(--g);font-size:13px;margin:0 0 18px}
+.b{display:grid;gap:9px}
+.f{display:grid;grid-template-columns:132px 1fr 92px;gap:12px;align-items:center}
+.f u{font-size:13px;color:var(--g);text-align:right;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.p{background:var(--f);border-radius:4px;height:22px;overflow:hidden}
+.p div{height:100%;background:var(--a);border-radius:4px;transition:width .35s}
+.p .neg{background:var(--r)}
+.f s{font-size:13px;font-variant-numeric:tabular-nums;font-weight:600;text-align:right;text-decoration:none}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--l)}
+th{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--g)}
+td.n{text-align:right;font-variant-numeric:tabular-nums}
+ul,ol{color:var(--g);font-size:13.5px;padding-left:20px}
+li{margin:6px 0}
+footer{border-top:1px solid var(--l);margin-top:44px;padding-top:16px;font-size:12px;color:var(--g)}
+code{background:var(--f);padding:2px 5px;border-radius:4px;font-size:12.5px}</style></head><body><div class="w">
+<header><p class="eb">Turismo · Egatur (INE)</p><h1>Egatur: dónde se queda el gasto turístico</h1><p class="pq">España recibe turismo de muchos mercados y no todos dejan el mismo dinero ni llegan por la misma puerta. La pregunta es de dónde viene el gasto, dónde se queda y por dónde entra, porque cada respuesta apunta a una decisión distinta.</p></header>
+<div class="k"><div><span>Ventana</span><b>2025-08 → 2026-07</b><em>12 meses</em></div><div><span>Comunidades con datos</span><b>8</b><em>tabla 10839</em></div><div><span>Cuota del aeropuerto</span><b>89,6 %</b><em>vía de acceso</em></div><div><span>Cuota de Cataluña</span><b>18,8 %</b><em>mayor comunidad</em></div></div><div class='fl'><i>Trimestre</i><button data-v='todos' aria-pressed='True'>todos</button><button data-v='2025Q3' aria-pressed='False'>2025Q3</button><button data-v='2025Q4' aria-pressed='False'>2025Q4</button><button data-v='2026Q1' aria-pressed='False'>2026Q1</button><button data-v='2026Q2' aria-pressed='False'>2026Q2</button><button data-v='2026Q3' aria-pressed='False'>2026Q3</button></div><section><h2>Cuota por comunidad autónoma</h2><p class='s'>% del gasto de la tabla en la ventana de 12 meses</p><div class='b' id='g-ccaa'></div></section>
+<section><h2>Cuota por país de residencia</h2><p class='s'>más de la mitad del gasto queda agrupado en «Resto del Mundo»</p><div class='b' id='g-pais'></div></section>
+<section><h2>Cuota por vía de acceso</h2><p class='s'>nueve de cada diez euros entran por avión</p><div class='b' id='g-via'></div></section>
+<section><h2>Gasto por comunidad autónoma</h2><p class='s'>ventana completa de 12 meses</p><table><thead><tr><th>Comunidad</th><th>Cuota</th></tr></thead><tbody><tr><td>Cataluña</td><td class='n'>18,8 %</td></tr><tr><td>Canarias</td><td class='n'>17,3 %</td></tr><tr><td>Baleares</td><td class='n'>15,4 %</td></tr><tr><td>Andalucía</td><td class='n'>15,0 %</td></tr><tr><td>Madrid</td><td class='n'>13,5 %</td></tr><tr><td>C. Valenciana</td><td class='n'>12,0 %</td></tr><tr><td>Otras</td><td class='n'>7,8 %</td></tr></tbody></table></section>
+<section><h2>Cómo se calcula</h2><p class="s">Una fila por dimensión y periodo; cada corte filtra por granularidad antes de agregar.</p><ol><li>Se usan solo las tablas mensuales y una ventana de 12 meses cerrada en el último mes disponible.</li><li>Cuota = gasto del grupo / gasto total de esa misma tabla; nunca se suman tablas distintas entre sí.</li><li>La tabla de motivo del viaje es anual (23995) y se lee aparte: sumarla con las mensuales duplicaría el gasto.</li><li>El CSV no declara unidades, así que se trabaja con cuotas y no con importes.</li></ol></section>
+<section><h2>Qué no dice este informe</h2><p class="s">Lo que el INE no permite afirmar con estas cinco tablas.</p><ul><li>La ventana llega hasta 2026-07, el último periodo de la extracción, no necesariamente el último del INE.</li><li>«Resto del Mundo» agrupa más de la mitad del gasto: sin desagregar, no se sabe qué mercados crecen.</li><li>El motivo del viaje solo existe por año, así que no se puede cruzar con el trimestre.</li><li>Los trimestres de los extremos de la ventana están incompletos (2025Q3 solo tiene agosto y septiembre).</li><li>Sin unidades verificables en el archivo no hay importes, solo porcentajes.</li></ul></section>
+<footer>Generado por <code>src/report.py</code> a partir de <code>data/processed/egatur_master_long.csv (2.881 filas, 5 tablas del INE)</code>. Sin dependencias,
+sin CDN: cada cifra de esta página sale de los datos del repositorio.</footer>
+</div><script>const DATOS={"filas":[
+{"a":"2025Q3","g":"ccaa","k":"Andalucía","v":14.7,"u":"%"},
+{"a":"2025Q3","g":"ccaa","k":"Baleares","v":22.7,"u":"%"},
+{"a":"2025Q3","g":"ccaa","k":"Canarias","v":13.2,"u":"%"},
+{"a":"2025Q3","g":"ccaa","k":"Cataluña","v":19.1,"u":"%"},
+{"a":"2025Q3","g":"ccaa","k":"C. Valenciana","v":12.9,"u":"%"},
+{"a":"2025Q3","g":"ccaa","k":"Madrid","v":9.4,"u":"%"},
+{"a":"2025Q3","g":"ccaa","k":"Otras","v":8.1,"u":"%"},
+{"a":"2025Q4","g":"ccaa","k":"Andalucía","v":15.0,"u":"%"},
+{"a":"2025Q4","g":"ccaa","k":"Baleares","v":9.3,"u":"%"},
+{"a":"2025Q4","g":"ccaa","k":"Canarias","v":22.2,"u":"%"},
+{"a":"2025Q4","g":"ccaa","k":"Cataluña","v":18.3,"u":"%"},
+{"a":"2025Q4","g":"ccaa","k":"C. Valenciana","v":11.0,"u":"%"},
+{"a":"2025Q4","g":"ccaa","k":"Madrid","v":16.1,"u":"%"},
+{"a":"2025Q4","g":"ccaa","k":"Otras","v":8.2,"u":"%"},
+{"a":"2026Q1","g":"ccaa","k":"Andalucía","v":15.5,"u":"%"},
+{"a":"2026Q1","g":"ccaa","k":"Baleares","v":4.3,"u":"%"},
+{"a":"2026Q1","g":"ccaa","k":"Canarias","v":27.7,"u":"%"},
+{"a":"2026Q1","g":"ccaa","k":"Cataluña","v":17.1,"u":"%"},
+{"a":"2026Q1","g":"ccaa","k":"C. Valenciana","v":11.5,"u":"%"},
+{"a":"2026Q1","g":"ccaa","k":"Madrid","v":16.6,"u":"%"},
+{"a":"2026Q1","g":"ccaa","k":"Otras","v":7.3,"u":"%"},
+{"a":"2026Q2","g":"ccaa","k":"Andalucía","v":15.2,"u":"%"},
+{"a":"2026Q2","g":"ccaa","k":"Baleares","v":18.2,"u":"%"},
+{"a":"2026Q2","g":"ccaa","k":"Canarias","v":12.7,"u":"%"},
+{"a":"2026Q2","g":"ccaa","k":"Cataluña","v":19.4,"u":"%"},
+{"a":"2026Q2","g":"ccaa","k":"C. Valenciana","v":11.7,"u":"%"},
+{"a":"2026Q2","g":"ccaa","k":"Madrid","v":15.1,"u":"%"},
+{"a":"2026Q2","g":"ccaa","k":"Otras","v":7.8,"u":"%"},
+{"a":"2026Q3","g":"ccaa","k":"Andalucía","v":14.8,"u":"%"},
+{"a":"2026Q3","g":"ccaa","k":"Baleares","v":22.8,"u":"%"},
+{"a":"2026Q3","g":"ccaa","k":"Canarias","v":12.0,"u":"%"},
+{"a":"2026Q3","g":"ccaa","k":"Cataluña","v":20.4,"u":"%"},
+{"a":"2026Q3","g":"ccaa","k":"C. Valenciana","v":13.6,"u":"%"},
+{"a":"2026Q3","g":"ccaa","k":"Madrid","v":8.8,"u":"%"},
+{"a":"2026Q3","g":"ccaa","k":"Otras","v":7.7,"u":"%"},
+{"a":"2025Q3","g":"pais","k":"Alemania","v":11.8,"u":"%"},
+{"a":"2025Q3","g":"pais","k":"Francia","v":10.7,"u":"%"},
+{"a":"2025Q3","g":"pais","k":"Italia","v":4.7,"u":"%"},
+{"a":"2025Q3","g":"pais","k":"Países Nórdicos","v":3.9,"u":"%"},
+{"a":"2025Q3","g":"pais","k":"Reino Unido","v":19.1,"u":"%"},
+{"a":"2025Q3","g":"pais","k":"Resto del Mundo","v":49.8,"u":"%"},
+{"a":"2025Q4","g":"pais","k":"Alemania","v":11.9,"u":"%"},
+{"a":"2025Q4","g":"pais","k":"Francia","v":7.7,"u":"%"},
+{"a":"2025Q4","g":"pais","k":"Italia","v":4.1,"u":"%"},
+{"a":"2025Q4","g":"pais","k":"Países Nórdicos","v":7.3,"u":"%"},
+{"a":"2025Q4","g":"pais","k":"Reino Unido","v":15.9,"u":"%"},
+{"a":"2025Q4","g":"pais","k":"Resto del Mundo","v":53.1,"u":"%"},
+{"a":"2026Q1","g":"pais","k":"Alemania","v":12.0,"u":"%"},
+{"a":"2026Q1","g":"pais","k":"Francia","v":6.7,"u":"%"},
+{"a":"2026Q1","g":"pais","k":"Italia","v":4.1,"u":"%"},
+{"a":"2026Q1","g":"pais","k":"Países Nórdicos","v":7.7,"u":"%"},
+{"a":"2026Q1","g":"pais","k":"Reino Unido","v":14.7,"u":"%"},
+{"a":"2026Q1","g":"pais","k":"Resto del Mundo","v":54.7,"u":"%"},
+{"a":"2026Q2","g":"pais","k":"Alemania","v":11.5,"u":"%"},
+{"a":"2026Q2","g":"pais","k":"Francia","v":7.8,"u":"%"},
+{"a":"2026Q2","g":"pais","k":"Italia","v":3.7,"u":"%"},
+{"a":"2026Q2","g":"pais","k":"Países Nórdicos","v":4.6,"u":"%"},
+{"a":"2026Q2","g":"pais","k":"Reino Unido","v":18.5,"u":"%"},
+{"a":"2026Q2","g":"pais","k":"Resto del Mundo","v":53.9,"u":"%"},
+{"a":"2026Q3","g":"pais","k":"Alemania","v":9.6,"u":"%"},
+{"a":"2026Q3","g":"pais","k":"Francia","v":9.0,"u":"%"},
+{"a":"2026Q3","g":"pais","k":"Italia","v":4.6,"u":"%"},
+{"a":"2026Q3","g":"pais","k":"Países Nórdicos","v":5.8,"u":"%"},
+{"a":"2026Q3","g":"pais","k":"Reino Unido","v":16.7,"u":"%"},
+{"a":"2026Q3","g":"pais","k":"Resto del Mundo","v":54.2,"u":"%"},
+{"a":"2025Q3","g":"via","k":"Aeropuerto","v":87.9,"u":"%"},
+{"a":"2025Q3","g":"via","k":"Carretera","v":9.5,"u":"%"},
+{"a":"2025Q3","g":"via","k":"Puerto","v":2.2,"u":"%"},
+{"a":"2025Q3","g":"via","k":"Tren","v":0.4,"u":"%"},
+{"a":"2025Q4","g":"via","k":"Aeropuerto","v":90.2,"u":"%"},
+{"a":"2025Q4","g":"via","k":"Carretera","v":7.9,"u":"%"},
+{"a":"2025Q4","g":"via","k":"Puerto","v":1.4,"u":"%"},
+{"a":"2025Q4","g":"via","k":"Tren","v":0.6,"u":"%"},
+{"a":"2026Q1","g":"via","k":"Aeropuerto","v":91.8,"u":"%"},
+{"a":"2026Q1","g":"via","k":"Carretera","v":6.7,"u":"%"},
+{"a":"2026Q1","g":"via","k":"Puerto","v":0.9,"u":"%"},
+{"a":"2026Q1","g":"via","k":"Tren","v":0.6,"u":"%"},
+{"a":"2026Q2","g":"via","k":"Aeropuerto","v":90.2,"u":"%"},
+{"a":"2026Q2","g":"via","k":"Carretera","v":7.3,"u":"%"},
+{"a":"2026Q2","g":"via","k":"Puerto","v":2.1,"u":"%"},
+{"a":"2026Q2","g":"via","k":"Tren","v":0.5,"u":"%"},
+{"a":"2026Q3","g":"via","k":"Aeropuerto","v":87.3,"u":"%"},
+{"a":"2026Q3","g":"via","k":"Carretera","v":10.5,"u":"%"},
+{"a":"2026Q3","g":"via","k":"Puerto","v":1.8,"u":"%"},
+{"a":"2026Q3","g":"via","k":"Tren","v":0.4,"u":"%"}
+],"graficos":[{"id":"ccaa","grupo":"ccaa","titulo":"Cuota por comunidad autónoma","subtitulo":"% del gasto de la tabla en la ventana de 12 meses","unidad":"%"},{"id":"pais","grupo":"pais","titulo":"Cuota por país de residencia","subtitulo":"más de la mitad del gasto queda agrupado en «Resto del Mundo»","unidad":"%"},{"id":"via","grupo":"via","titulo":"Cuota por vía de acceso","subtitulo":"nueve de cada diez euros entran por avión","unidad":"%"}]};const D=DATOS;let act='todos';
+const num=(v,u)=>{const n=Math.abs(v).toLocaleString('es-ES',{maximumFractionDigits:u==='%'?1:0});return (v<0?'-':'')+n+(u==='%'?' %':'')};
+function pinta(){D.graficos.forEach(g=>{const c=document.getElementById('g-'+g.id);
+const fs=D.filas.filter(f=>f.g===g.grupo&&(act==='todos'||f.a===act));
+if(!fs.length){c.innerHTML='<p class="s">Sin datos para este filtro.</p>';return}
+const o={};fs.forEach(f=>{o[f.k]=(o[f.k]||0)+f.v});
+const ks=(g.orden||Object.keys(o)).filter(k=>k in o),vs=ks.map(k=>o[k]);
+const max=Math.max(...vs.map(Math.abs),1),u=g.unidad||fs[0].u||'';
+c.innerHTML=ks.map((k,i)=>{const v=vs[i];
+return '<div class="f"><u>'+k+'</u><div class="p"><div class="'+(v<0?'neg':'')+'" style="width:'+Math.max(Math.abs(v)/max*100,.6)+'%"></div></div><s>'+num(v,u)+'</s></div>'}).join('')})}
+document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{act=b.dataset.v;
+document.querySelectorAll('button').forEach(o=>o.setAttribute('aria-pressed',o===b));pinta()}));
+pinta();</script></body></html>
