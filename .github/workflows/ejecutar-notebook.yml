@@ -19,6 +19,32 @@ jobs:
           python-version: '3.12'
       - name: Dependencias
         run: pip install --quiet nbconvert ipykernel pandas matplotlib
+      - name: Cabecera para el reclutador
+        run: |
+          python - <<'PY'
+          import nbformat
+          from nbformat.v4 import new_markdown_cell
+
+          RUTA = 'Egatur_Power_BI_project.ipynb'
+          TEXTO = '''[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Nicolenki7/ETL_Egatur_INE_Esp/blob/main/Egatur_Power_BI_project.ipynb)
+
+> **En 30 segundos:** el gasto turístico crece 7,2 % interanual y tres mercados explican el 82 % del total; Cataluña es el destino que más gasta.
+>
+> - 2.881 filas y 130 meses (2015-10 a 2026-07)
+> - Tres primeros mercados: 81,7 % del gasto del último año
+> - Cataluña 18,8 % del gasto; el 89,6 % llega por aeropuerto; ocio y vacaciones 44,7 %
+>
+> Los resultados ya están ejecutados: no hace falta correr nada para leerlos.'''
+
+          nb = nbformat.read(RUTA, as_version=4)
+          primero = ''.join(nb.cells[0].source) if nb.cells else ''
+          if 'En 30 segundos' not in primero:
+              nb.cells.insert(0, new_markdown_cell(TEXTO))
+              nbformat.write(nb, RUTA)
+              print('cabecera insertada')
+          else:
+              print('cabecera ya presente')
+          PY
       - name: Ejecutar
         run: jupyter nbconvert --to notebook --execute --inplace "Egatur_Power_BI_project.ipynb" --ExecutePreprocessor.timeout=900
       - name: Commit
